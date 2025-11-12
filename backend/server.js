@@ -18,6 +18,20 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
+app.put("/api/products/:id", async (req, res) => {
+  const { id } = req.params;
+  const product = req.body;
+  try {
+    const updateProdct = await Product.findByIdAndUpdate(id, product, {
+      new: true,
+    });
+    res.status(200).json({ success: true, data: updateProdct });
+  } catch (error) {
+    console.log("Error while updating product", error.message);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
 app.post("/api/products", async (req, res) => {
   const product = req.body;
   if (!product.name || !product.price || !product.image) {
