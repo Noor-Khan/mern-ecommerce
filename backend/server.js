@@ -8,11 +8,13 @@ dotenv.config();
 const app = express();
 app.use(express.json()); // allow us to accept JSON data in the req.body
 
+const PORT = process.env.PORT || 3000;
+
 app.use("/api/products", productRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   connectDB();
-  console.log("server listening at port http://localhost:3000 ");
+  console.log(`server listening at port http://localhost:${PORT}`);
 });
 
 // mongodb+srv://nksoftdev:<db_password>@cluster0.gvsfcxi.mongodb.net/?appName=Cluster0
