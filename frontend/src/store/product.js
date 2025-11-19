@@ -61,6 +61,14 @@ export const useProductStore = create((set) => ({
         success: false,
         message: data.message,
       };
+    set((state) => ({
+      products: state.products.map((product) => {
+        if (product._id === data.data._id) {
+          return data.data;
+        }
+        return product;
+      }),
+    }));
     return {
       success: true,
       message: data.message,

@@ -23,17 +23,19 @@ const Navbar = () => {
           sm: "row",
         }}
       >
-        <Text
-          bgGradient="linear(to-r, cyan.300, blue.700)"
-          bgClip="text"
-          fontSize={{
-            base: "md",
-            sm: "2xl",
-          }}
-          fontWeight="extrabold"
-        >
-          Product Store 🛒
-        </Text>
+        <Link to={"/"}>
+          <Text
+            bgGradient="linear(to-r, cyan.300, blue.700)"
+            bgClip="text"
+            fontSize={{
+              base: "md",
+              sm: "2xl",
+            }}
+            fontWeight="extrabold"
+          >
+            Product Store 🛒
+          </Text>
+        </Link>
         <HStack spacing={2} alignItems={"center"}>
           <Link to={"/create"}>
             <Button>

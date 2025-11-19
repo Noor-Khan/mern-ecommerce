@@ -37,12 +37,12 @@ function ProductForm() {
         status: "success",
         isClosable: true,
       });
+      setProdcut({
+        name: "",
+        price: "",
+        image: "",
+      });
     }
-    setProdcut({
-      name: "",
-      price: "",
-      image: "",
-    });
   };
 
   return (
@@ -55,16 +55,19 @@ function ProductForm() {
           borderColor={"gray.700"}
           placeholder="Product Name"
           name="name"
+          value={newProduct.name}
           onChange={(e) => setProdcut({ ...newProduct, name: e.target.value })}
         />
         <Input
           placeholder="price"
           name="price"
+          value={newProduct.price}
           onChange={(e) => setProdcut({ ...newProduct, price: e.target.value })}
         />
         <Input
           placeholder="Image URL"
           name="image"
+          value={newProduct.image}
           onChange={(e) => setProdcut({ ...newProduct, image: e.target.value })}
         />
         <Button width={"full"} onClick={handleProduct}>
