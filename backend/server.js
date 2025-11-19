@@ -28,5 +28,3 @@ app.listen(PORT, () => {
   connectDB();
   console.log(`server listening at port http://localhost:${PORT}`);
 });
-
-// mongodb+srv://nksoftdev:<db_password>@cluster0.gvsfcxi.mongodb.net/?appName=Cluster0
