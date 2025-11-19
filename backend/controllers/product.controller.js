@@ -10,7 +10,7 @@ export const getProducts = async (req, res) => {
   }
 };
 
-export const createProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   const { id } = req.params;
   const product = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -22,14 +22,18 @@ export const createProduct = async (req, res) => {
     const updateProdct = await Product.findByIdAndUpdate(id, product, {
       new: true,
     });
-    res.status(200).json({ success: true, data: updateProdct });
+    res.status(200).json({
+      success: true,
+      data: updateProdct,
+      message: "Product Updated successfully",
+    });
   } catch (error) {
     console.log("Error while updating product", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
-export const updateProdct = async (req, res) => {
+export const createProduct = async (req, res) => {
   const product = req.body;
   if (!product.name || !product.price || !product.image) {
     return res
@@ -40,7 +44,11 @@ export const updateProdct = async (req, res) => {
   const newProduct = new Product(product);
   try {
     await newProduct.save();
-    res.status(201).json({ success: true, data: newProduct });
+    res.status(201).json({
+      success: true,
+      message: "Product created successfully",
+      data: newProduct,
+    });
   } catch (err) {
     console.error("Errro while creating product", err.message);
     res.status(500).json({ success: false, message: "server Error" });
@@ -59,7 +67,7 @@ export const deleteProduct = async (req, res) => {
     await Product.findByIdAndDelete(id);
     res
       .status(200)
-      .json({ success: true, message: `Product is deleted: ${id}` });
+      .json({ success: true, message: "Product is deleted successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
